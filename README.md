@@ -55,7 +55,7 @@ O AI Agent tem acesso a duas "ferramentas":
 
 ## Tecnologias usadas:
 
-- **[n8n]**
+- **[n8n]** — plataforma de automação
 - **[Telegram]** — interface de conversa com o usuário (criado via BotFather)
 - **[Cohere]** — modelo de linguagem (LLM) e geração de embeddings
 - **MySQL** — banco de dados relacional dos alunos
