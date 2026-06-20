@@ -66,12 +66,12 @@ O AI Agent tem acesso a duas "ferramentas":
 ## Estrutura do repositório:
 
 cross-code/
-├── workflows/              → arquivos .json exportados do n8n (os dois fluxos)
-├── knowledge-base/         → base de conhecimento em texto (horários, planos, FAQ)
-├── database/               → script SQL de criação da tabela de alunos (dados fictícios)
-├── docs/
-│   └── images/             → prints dos fluxos e do bot em funcionamento
-└── README.md
+workflows/              → arquivos .json exportados do n8n (os dois fluxos)
+knowledge-base/         → base de conhecimento em texto (horários, planos, FAQ)
+database/               → script SQL de criação da tabela de alunos (dados fictícios)
+docs/
+└── images/             → prints dos fluxos e do bot em funcionamento
+README.md
 
 ## Sobre os dados:
 
