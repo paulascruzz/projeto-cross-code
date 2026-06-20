@@ -1,0 +1,136 @@
+{
+  "name": "cross-code 1",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://raw.githubusercontent.com/paulascruzz/cross-code/refs/heads/main/crosscode_base_conhecimento.txt?cb={{$now}}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        224,
+        0
+      ],
+      "id": "ce550bc5-cc71-4c5d-8f2e-ceb9cddd72df",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "vector_store_key"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        448,
+        0
+      ],
+      "id": "1b619b26-da58-4498-a835-c6da6599e79b",
+      "name": "Simple Vector Store"
+    },
+    {
+      "parameters": {
+        "modelName": "embed-multilingual-v3.0"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
+      "typeVersion": 1,
+      "position": [
+        528,
+        224
+      ],
+      "id": "1e81e165-090e-4fe6-b8be-70de07d71fa9",
+      "name": "Embeddings Cohere",
+      "credentials": {
+        "cohereApi": {
+          "id": "CmKSLVb29iED7Jr4",
+          "name": "Cohere account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        656,
+        256
+      ],
+      "id": "4bba87a9-5a8f-4150-93b1-e36c615624f0",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "78be3f74-cbb1-4142-93aa-c3d4d8657755",
+      "name": "When clicking ‘Execute workflow’"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Simple Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Cohere": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Simple Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Simple Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "4656383a-b8e5-4507-9f4f-03f9f88e6c93",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "135f9fb7599d1e49664f5fe2c5dcb5e8cee2a9810fcbc6bd5b194f04f9274331"
+  },
+  "nodeGroups": [],
+  "id": "uMFMddW52dUvU3US",
+  "tags": []
+}
